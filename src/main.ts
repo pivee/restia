@@ -4,6 +4,8 @@ import * as cp from 'child_process';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import * as swaggerUi from 'swagger-ui-express';
+import { GlobalExceptionFilter } from './filters/global-exception.filter';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { AppModule } from './modules/app/app.module';
 
 async function bootstrap() {
@@ -18,6 +20,8 @@ async function bootstrap() {
 
     app.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
+
+  app.useGlobalFilters(new HttpExceptionFilter(), new GlobalExceptionFilter());
 
   await app.listen(process.env.PORT ?? 3000, () => {
     Logger.log(

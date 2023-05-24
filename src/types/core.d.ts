@@ -1,5 +1,5 @@
 export type HttpResponse<T> = {
-  data: T;
+  data?: T;
   errors?: unknown;
 };
 
