@@ -10,6 +10,8 @@ export type Entity = {
   name: string;
 };
 
+export interface GetEntityResponse extends Entity {}
+
 export interface CreateEntityRequest extends Omit<Entity, 'id'> {}
 
 export interface UpdateEntityRequest extends Partial<CreateEntityRequest> {}
