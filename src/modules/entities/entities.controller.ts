@@ -1,5 +1,5 @@
-import { TypedRoute } from '@nestia/core';
-import { Body, Controller, Param } from '@nestjs/common';
+import { TypedBody, TypedParam, TypedRoute } from '@nestia/core';
+import { Controller } from '@nestjs/common';
 import { CreateEntityRequest, UpdateEntityRequest } from '../../types/entities';
 import { EntitiesService } from './entities.service';
 
@@ -9,7 +9,7 @@ export class EntitiesController {
 
   /** @tag entities */
   @TypedRoute.Post()
-  create(@Body() createEntityRequest: CreateEntityRequest) {
+  create(@TypedBody() createEntityRequest: CreateEntityRequest) {
     return this.entitiesService.create(createEntityRequest);
   }
 
@@ -21,22 +21,22 @@ export class EntitiesController {
 
   /** @tag entities */
   @TypedRoute.Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@TypedParam('id') id: string) {
     return this.entitiesService.findOne(+id);
   }
 
   /** @tag entities */
   @TypedRoute.Patch(':id')
   update(
-    @Param('id') id: string,
-    @Body() updateEntityRequest: UpdateEntityRequest,
+    @TypedParam('id') id: string,
+    @TypedBody() updateEntityRequest: UpdateEntityRequest,
   ) {
     return this.entitiesService.update(+id, updateEntityRequest);
   }
 
   /** @tag entities */
   @TypedRoute.Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@TypedParam('id') id: string) {
     return this.entitiesService.remove(+id);
   }
 }
