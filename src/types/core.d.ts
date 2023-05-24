@@ -1,5 +1,6 @@
-export type DataResponse<T> = {
+export type HttpResponse<T> = {
   data: T;
+  errors?: unknown;
 };
 
 /**
@@ -10,4 +11,4 @@ export type DataResponse<T> = {
  * which is not ideal although it shows the right type
  * when you expand the schema in Swagger UI.
  */
-export interface TextResponse extends DataResponse<string> {}
+export interface TextResponse extends HttpResponse<string> {}

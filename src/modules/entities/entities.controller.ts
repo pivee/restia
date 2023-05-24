@@ -1,7 +1,13 @@
 import { TypedBody, TypedParam, TypedRoute } from '@nestia/core';
 import { Controller, HttpCode, HttpStatus } from '@nestjs/common';
-import { CreateEntityRequest, UpdateEntityRequest } from '../../types/entities';
+import {
+  CreateEntityRequest,
+  ManyEntitiesResponse,
+  OneEntityResponse,
+  UpdateEntityRequest,
+} from '../../types/entities';
 import { EntitiesService } from './entities.service';
+import { HttpResponse } from '../models/HttpResponse';
 
 @Controller('entities')
 export class EntitiesController {
@@ -9,20 +15,22 @@ export class EntitiesController {
 
   /** @tag entities */
   @TypedRoute.Post()
-  create(@TypedBody() createEntityRequest: CreateEntityRequest) {
-    return this.entitiesService.create(createEntityRequest);
+  create(
+    @TypedBody() createEntityRequest: CreateEntityRequest,
+  ): OneEntityResponse {
+    return new HttpResponse(this.entitiesService.create(createEntityRequest));
   }
 
   /** @tag entities */
   @TypedRoute.Get()
-  findAll() {
-    return this.entitiesService.findAll();
+  findAll(): ManyEntitiesResponse {
+    return new HttpResponse(this.entitiesService.findAll());
   }
 
   /** @tag entities */
   @TypedRoute.Get(':id')
-  findOne(@TypedParam('id') id: string) {
-    return this.entitiesService.findOne(id);
+  findOne(@TypedParam('id') id: string): OneEntityResponse {
+    return new HttpResponse(this.entitiesService.findOne(id));
   }
 
   /** @tag entities */
@@ -30,8 +38,10 @@ export class EntitiesController {
   update(
     @TypedParam('id') id: string,
     @TypedBody() updateEntityRequest: UpdateEntityRequest,
-  ) {
-    return this.entitiesService.update(id, updateEntityRequest);
+  ): OneEntityResponse {
+    return new HttpResponse(
+      this.entitiesService.update(id, updateEntityRequest),
+    );
   }
 
   /** @tag entities */

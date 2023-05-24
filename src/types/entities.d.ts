@@ -1,3 +1,5 @@
+import { HttpResponse } from './core';
+
 export type Entity = {
   /**
    * @format uuid
@@ -10,7 +12,10 @@ export type Entity = {
   name: string;
 };
 
-export interface GetEntityResponse extends Entity {}
+export interface OneEntityResponse extends HttpResponse<Entity | undefined> {}
+
+export interface ManyEntitiesResponse
+  extends HttpResponse<Entity[] | undefined> {}
 
 export interface CreateEntityRequest extends Omit<Entity, 'id'> {}
 

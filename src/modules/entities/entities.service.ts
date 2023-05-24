@@ -10,7 +10,7 @@ import {
 export class EntitiesService {
   entities: Entity[] = [];
 
-  create(createEntityRequest: CreateEntityRequest): Entity | null {
+  create(createEntityRequest: CreateEntityRequest): Entity | undefined {
     Logger.verbose('This action adds a new entity');
     Logger.debug({ createEntityDto: createEntityRequest });
 
