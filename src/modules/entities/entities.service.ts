@@ -11,7 +11,7 @@ export class EntitiesService {
   entities: Entity[] = [];
 
   create(createEntityRequest: CreateEntityRequest): Entity | undefined {
-    Logger.verbose('This action adds a new entity');
+    Logger.debug('This action adds a new entity');
     Logger.debug({ createEntityDto: createEntityRequest });
 
     const createdEntity = { id: crypto.randomUUID(), ...createEntityRequest };
@@ -21,19 +21,19 @@ export class EntitiesService {
   }
 
   findAll() {
-    Logger.verbose(`This action returns all entities`);
+    Logger.debug(`This action returns all entities`);
 
     return this.entities;
   }
 
   findOne(id: string) {
-    Logger.verbose(`This action returns the entity with id: #${id}`);
+    Logger.debug(`This action returns the entity with id: #${id}`);
 
     return this.entities.find((entity) => entity.id === id);
   }
 
   update(id: string, updateEntityRequest: UpdateEntityRequest) {
-    Logger.verbose(`This action updates the entity with id: #${id}`);
+    Logger.debug(`This action updates the entity with id: #${id}`);
     Logger.debug({ updateEntityDto: updateEntityRequest });
 
     const entityIndex = this.entities.findIndex((entity) => entity.id === id);
@@ -49,7 +49,7 @@ export class EntitiesService {
   }
 
   remove(id: string) {
-    Logger.verbose(`This action removes the entity with id: #${id}`);
+    Logger.debug(`This action removes the entity with id: #${id}`);
 
     const entityIndex = this.entities.findIndex((entity) => entity.id === id);
 
