@@ -1,5 +1,6 @@
 import { TypedBody, TypedParam, TypedRoute } from '@nestia/core';
 import { Controller, HttpCode, HttpStatus } from '@nestjs/common';
+import { HttpResponse } from '../../models/HttpResponse';
 import {
   CreateEntityRequest,
   ManyEntitiesResponse,
@@ -7,7 +8,6 @@ import {
   UpdateEntityRequest,
 } from '../../types/entities';
 import { EntitiesService } from './entities.service';
-import { HttpResponse } from '../models/HttpResponse';
 
 @Controller('entities')
 export class EntitiesController {

@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
-import { HttpResponse } from '../modules/models/HttpResponse';
+import { HttpResponse } from '../models/HttpResponse';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
